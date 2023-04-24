@@ -52,8 +52,25 @@ function App(props) {
     // eslint-disable-next-line
   }, [search]);
   
-  // 
-    return (
+  // return (
+  //   <div className={classes.root}>
+  //     <AppBar position="static" style={{ background: '#2E3B55' }}>
+  //       <Toolbar>
+  //         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+  //           <CloudIcon />
+  //         </IconButton>
+  //         <Typography
+  //           variant="h6"
+  //           align="center"
+  //           className={classes.title}
+  //         >
+  //           EKS DEMO Blog
+  //         </Typography>
+  //         {new Date().toLocaleTimeString()}
+  //       </Toolbar>
+  //     </AppBar>
+  //     <br/>
+   return (
     <div className={classes.root}>
       <AppBar position="static" style={{ background: '#2E3B55' }}>
         <Toolbar>
@@ -72,6 +89,28 @@ function App(props) {
       </AppBar>
       <br/>
 
+      <UpperPage key={1} />
+      <br/>
+      
+      <form className={classes.searchRoot} noValidate autoComplete="off">
+        <TextField
+          id="standard-basic"
+          label="Enter your keyword to search"
+          type="text"
+          value={query}
+          onChange={event => setQuery(event.target.value)}
+        />
+        <Button onClick={() => setSearch(query)}> Click </Button>
+      </form>
+      <ul>
+      {data.outcome.map( item => (
+        <li key={item.url}>
+          <a href={item.url}>{item.title}</a><br/>
+        </li>
+      ))}
+      </ul>
+    </div>
+  );
 }
 
 App.propTypes = {
